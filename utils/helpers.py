@@ -6,13 +6,7 @@ def apply_dark_theme():
     """
     st.markdown("""
         <style>
-        .stApp {
-            background-color: #0E1117;
-            color: #FAFAFA;
-        }
-        .css-1d391kg {
-            background-color: #1E1E1E;
-        }
+        /* Custom component styles — base colors controlled by config.toml theme */
         .stButton>button {
             background-color: #2E3B4E;
             color: white;
@@ -23,7 +17,7 @@ def apply_dark_theme():
             border-color: #6C84A9;
         }
         .metric-card {
-            background-color: #1E1E1E;
+            background-color: rgba(30, 30, 30, 0.6);
             padding: 15px;
             border-radius: 8px;
             border: 1px solid #333;

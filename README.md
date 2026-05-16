@@ -7,6 +7,7 @@
 [![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.x-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io)
 [![Gemini](https://img.shields.io/badge/Google-Gemini_2.5-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev)
+[![Streamlit Demo](https://img.shields.io/badge/🚀_Live_Demo-enterprise--intelligence--iitg.streamlit.app-FF4B4B?style=for-the-badge)](https://enterprise-intelligence-iitg.streamlit.app)
 
 </div>
 
@@ -24,50 +25,23 @@ Paired with a **multi-agent orchestration layer** (Planner → Retriever → Exe
 
 ## 🏗️ Architecture
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    INDEXING PIPELINE                            │
-│                                                                 │
-│  PDF/TXT ──► HierarchicalParser ──► Leaf Nodes                 │
-│              [2048 / 512 / 128 tokens]                          │
-│                        │                                        │
-│                        ▼                                        │
-│              Embedding Model (local / Gemini)                   │
-│                        │                                        │
-│                        ▼                                        │
-│         ┌──────────────────────────────┐                        │
-│         │  Geometry-Aware Consolidation│                        │
-│         │  ─────────────────────────── │                        │
-│         │  KMeans Clustering           │                        │
-│         │  + Spectral Spread Analysis  │                        │
-│         │  + Identity Error Bounding   │                        │
-│         │  → ~55% node reduction       │                        │
-│         └──────────────────────────────┘                        │
-│                        │                                        │
-│                        ▼                                        │
-│              ChromaDB (Persistent Vector Store)                 │
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph INDEXING["📄 Indexing Pipeline"]
+        A[/"PDF/TXT upload"/] --> B["Hierarchical Parser\n2048 · 512 · 128 tokens"]
+        B --> C["Embedding Model\n(gemini-embedding-2)"]
+        C --> D["🔷 Geometry-Aware Consolidation\nKMeans → Spectral Spread → Identity Error Bound\n(~55% node reduction)"]
+        D --> DB[("ChromaDB\nPersistent Vector Store")]
+    end
 
-┌─────────────────────────────────────────────────────────────────┐
-│                    QUERY PIPELINE                               │
-│                                                                 │
-│  User Query                                                     │
-│      │                                                          │
-│      ▼                                                          │
-│  [Planner Agent] ──► Route: vector_search / anomaly / KG       │
-│      │                                                          │
-│      ▼                                                          │
-│  [Retriever] ──► ChromaDB cosine search on GAC nodes           │
-│      │                                                          │
-│      ▼                                                          │
-│  [Executor Agent] ──► Gemini Flash generates response           │
-│      │                                                          │
-│      ▼                                                          │
-│  [Validator Agent] ──► Groundedness check + confidence score   │
-│      │                  (informed by d_eff & theta bounds)      │
-│      ▼                                                          │
-│  Final Response + Audit Trace + Knowledge Graph                 │
-└─────────────────────────────────────────────────────────────────┘
+    subgraph QUERY["💬 Query Pipeline"]
+        Q([User Query]) --> P["🧠 Planner Agent\n(gemini-2.5-pro)"] --> |"vector_search\nanomaly\nknowledge_graph"| R["🔍 Retriever\nCosine similarity on GAC-consolidated nodes"]
+        R --> E["⚡ Executor Agent\n(gemini-2.5-flash)\nContext-grounded response generation"]
+        E --> V["✅ Validator Agent\n(gemini-2.5-pro)\nGroundedness check · d_eff · θ bounds"]
+        V --> OUT[/"Final Response + Audit Trace + KG Subgraph"/]
+    end
+
+    DB --> R
 ```
 
 ---
@@ -210,9 +184,17 @@ This submission demonstrates:
 
 ## 👥 Team
 
-Built by **Shivtej** & **Shashank** · IIT Guwahati · 2025-26
+Built by **Shivtej Gaikwad** & **Shashank Tripathi** · IIT Guwahati · Data Science & AI
 
 ---
+
+## 🔗 Links
+
+| | |
+|---|---|
+| 🚀 **Live Demo** | [enterprise-intelligence-iitg.streamlit.app](https://enterprise-intelligence-iitg.streamlit.app) |
+| 📦 **GitHub** | [ShivtejG236/Enterprise-Intelligence](https://github.com/ShivtejG236/Enterprise-Intelligence) |
+| 🏆 **Hackathon** | [lablab.ai — Intelligent Enterprise Solutions](https://lablab.ai/ai-hackathons/techex-intelligent-enterprise-solutions-hackathon) |
 
 <div align="center">
 
