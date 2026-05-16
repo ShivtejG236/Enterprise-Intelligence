@@ -1,0 +1,7 @@
+[server]
+# Exclude the venv and large ML packages from file watching
+# This eliminates the hundreds of [transformers] warnings on startup
+fileWatcherType = "none"
+
+[browser]
+gatherUsageStats = false

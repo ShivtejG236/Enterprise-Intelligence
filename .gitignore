@@ -1,0 +1,37 @@
+# --- Secrets & Environment ---
+.env
+.env.*
+
+# --- Python Virtual Environment ---
+.data_intel/
+
+# --- Python Bytecode ---
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# --- Vector Database (generated at runtime, not source) ---
+chroma_db/
+
+# --- Uploaded / Runtime Data ---
+data/
+# demo_data/ is intentionally committed (sample docs for hackathon demo)
+
+# --- Temp & Generated HTML files ---
+*.html
+
+# --- Scratch Test Scripts (root-level one-offs) ---
+test_batch.py
+test_llama_embed.py
+test_models.py
+
+# --- macOS Metadata ---
+.DS_Store
+**/.DS_Store
+
+# --- Misc ---
+lib/
+gac_code/
+*.log
